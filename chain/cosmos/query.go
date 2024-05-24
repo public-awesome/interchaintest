@@ -24,7 +24,8 @@ func RangeBlockMessages(ctx context.Context, interfaceRegistry codectypes.Interf
 	for _, txbz := range block.Block.Txs {
 		tx, err := decodeTX(interfaceRegistry, txbz)
 		if err != nil {
-			return fmt.Errorf("decode tendermint tx: %w", err)
+			// ignore decode errors they could happen because vote extensions or unregistered modules
+			continue
 		}
 		for _, m := range tx.GetMsgs() {
 			if ok := done(m); ok {
