@@ -22,6 +22,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	"github.com/cosmos/ibc-go/modules/capability"
 
+	ica "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts"
 	transfer "github.com/cosmos/ibc-go/v8/modules/apps/transfer"
 	ibccore "github.com/cosmos/ibc-go/v8/modules/core"
 	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
@@ -52,6 +53,7 @@ func DefaultEncoding() testutil.TestEncodingConfig {
 		ibctm.AppModuleBasic{},
 		ibcwasm.AppModuleBasic{},
 		ccvprovider.AppModuleBasic{},
+		ica.AppModuleBasic{},
 	)
 }
 
