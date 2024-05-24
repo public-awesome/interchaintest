@@ -65,7 +65,9 @@ func PollForMessage[T any](ctx context.Context, chain *CosmosChain, registry cod
 		for _, tx := range block.Block.Txs {
 			sdkTx, err := decodeTX(registry, tx)
 			if err != nil {
-				return zero, err
+				// TODO: find a way to identify vote extensions and ignore them
+				// return zero, err
+				continue
 			}
 			for _, msg := range sdkTx.GetMsgs() {
 				if found, ok := msg.(T); ok {
